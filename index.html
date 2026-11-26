@@ -3,19 +3,61 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>Golfers Barber — North Berwick</title>
-  <meta name="description" content="Premium cuts, skin fades, hot shaves in North Berwick. Walk-ins welcome — no appointment needed." />
+  <title>Golfers Barber — Barber Shop in North Berwick | Walk-ins Welcome</title>
+  <meta name="description" content="Golfers Barber, 19 High St, North Berwick. Skin fades, scissor cuts, hot towel shaves and beard trims from £9. Walk-ins only — no appointment needed." />
   <meta name="theme-color" content="#0b0b0b" />
-  <!-- اختياري: غير الصور الأولى حسب المتوفر عندك -->
-  <link rel="preload" as="image" href="haircut-01.jpg" fetchpriority="high" />
+  <link rel="canonical" href="https://golfersbarber.is-cool.dev/" />
+
+  <!-- Icons -->
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+
+  <!-- Share preview (WhatsApp, Facebook, X ...) -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Golfers Barber" />
+  <meta property="og:title" content="Golfers Barber — North Berwick" />
+  <meta property="og:description" content="Skin fades, classic cuts, hot towel shaves & beard work. Walk-ins welcome — 19 High St, North Berwick." />
+  <meta property="og:url" content="https://golfersbarber.is-cool.dev/" />
+  <meta property="og:image" content="https://golfersbarber.is-cool.dev/og-image.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- Info for Google (shows hours, address & phone in search / Maps) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BarberShop",
+    "name": "Golfers Barber",
+    "url": "https://golfersbarber.is-cool.dev/",
+    "image": "https://golfersbarber.is-cool.dev/shop-front.jpg",
+    "logo": "https://golfersbarber.is-cool.dev/apple-touch-icon.png",
+    "telephone": "+447928968614",
+    "priceRange": "£6–£30",
+    "currenciesAccepted": "GBP",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "19 High St",
+      "addressLocality": "North Berwick",
+      "postalCode": "EH39 4HH",
+      "addressCountry": "GB"
+    },
+    "openingHoursSpecification": [
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "09:00", "closes": "18:00" },
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "09:00", "closes": "17:00" }
+    ]
+  }
+  </script>
+
+  <link rel="preload" as="image" href="shop-front.jpg" fetchpriority="high" />
   <style>
     :root{
       --bg:#0b0b0b; --panel:#0e0e0e; --text:#f6f6f6; --muted:#cfcfcf;
       --line:#1b1b1b; --gold:#d4af37; --gold-2:#b89422;
-      --radius:16px; --maxw:1100px;
+      --radius:16px; --maxw:1100px; --header-h:72px;
     }
     *,*::before,*::after{box-sizing:border-box} html,body{height:100%}
-    html{scroll-behavior:smooth}
+    html{scroll-behavior:smooth; scroll-padding-top:var(--header-h)}
     body{
       margin:0; color:var(--text);
       background:
@@ -27,205 +69,278 @@
     img{max-width:100%; display:block}
     a{color:inherit; text-decoration:none}
     .container{max-width:var(--maxw); margin-inline:auto; padding-inline:22px}
+    .sr-only{position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap}
 
     /* Focus */
     :focus-visible{ outline:3px solid var(--gold); outline-offset:3px; border-radius:10px }
 
     /* Header */
-    header{ position:sticky; top:0; z-index:50; backdrop-filter: blur(8px);
-      background: rgba(10,10,10,.72); border-bottom:1px solid var(--line) }
-    .bar{ display:flex; align-items:center; justify-content:space-between; gap:16px; padding:14px 0 }
+    header{ position:sticky; top:0; z-index:50; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+      background: rgba(10,10,10,.82); border-bottom:1px solid var(--line) }
+    .bar{ display:flex; align-items:center; justify-content:space-between; gap:16px; padding:12px 0; min-height:var(--header-h) }
     .brand{ display:flex; align-items:center; gap:12px }
-    .logo{
-      width:44px; height:44px; border-radius:14px;
-      background: linear-gradient(135deg, var(--gold), var(--gold-2));
-      border:1px solid #ffffff24; box-shadow: inset 0 3px 18px #0009, 0 8px 30px #0006;
-    }
-    .name{ margin:0; font-weight:900; letter-spacing:.4px }
+    .logo{ width:44px; height:44px; border-radius:14px; box-shadow: 0 8px 30px #0006; flex:none }
+    .name{ margin:0; font-size:1.35rem; font-weight:900; letter-spacing:.4px }
     .name span{ color:var(--gold) }
 
     .nav{ display:flex; align-items:center; gap:10px }
     .pill{ padding:9px 13px; border:1px solid #262626; border-radius:999px; background:#0f0f0f; color:#e7e7e7; font-weight:600 }
-    .pill:hover{ border-color:#323232 }
+    .pill:hover{ border-color:var(--gold-2) }
+    .pill.call{ background:linear-gradient(135deg, var(--gold), var(--gold-2)); color:#0b0b0b; border-color:transparent; font-weight:800 }
+
+    .menu-btn{ display:none; width:44px; height:44px; border-radius:12px; border:1px solid #262626; background:#0f0f0f; color:#fff; cursor:pointer; padding:0 }
+    .menu-btn svg{ margin:auto }
+
+    @media (max-width:768px){
+      .menu-btn{ display:grid; place-items:center }
+      .nav{ position:absolute; top:100%; inset-inline:0; flex-direction:column; align-items:stretch; gap:8px;
+        padding:12px 22px 18px; background:rgba(10,10,10,.97); border-bottom:1px solid var(--line);
+        display:none }
+      .nav.open{ display:flex }
+      .nav .pill{ text-align:center; padding:12px 14px; font-size:1.05rem }
+    }
 
     /* Hero */
-    .hero{ position:relative; overflow:hidden; border-bottom:1px solid var(--line) }
+    .hero{ position:relative; overflow:hidden; border-bottom:1px solid var(--line); isolation:isolate }
     .hero__bg{ position:absolute; inset:0; z-index:-1 }
     .hero__bg img{ width:100%; height:100%; object-fit:cover; object-position:center; transform: scale(1.04) }
-    .hero__bg::after{ content:""; position:absolute; inset:0; background: linear-gradient(rgba(0,0,0,.62), rgba(0,0,0,.72)) }
+    .hero__bg::after{ content:""; position:absolute; inset:0; background: linear-gradient(rgba(0,0,0,.62), rgba(0,0,0,.78)) }
     .hero__wrap{ padding: clamp(64px, 10vw, 128px) 0; text-align:center }
-    .hero h1{ margin:0 0 12px; font-size:clamp(2.2rem, 5vw, 3.2rem); font-weight:900; letter-spacing:.3px }
+    .hero h1{ margin:0 0 12px; font-size:clamp(2.1rem, 5vw, 3.2rem); line-height:1.15; font-weight:900; letter-spacing:.3px }
     .hl{ background: linear-gradient(135deg, var(--gold), var(--gold-2)); -webkit-background-clip:text; background-clip:text; color:transparent }
     .hero p{ margin:0 auto 16px; max-width:62ch; color:#d7d7d7 }
-    .notice{ display:inline-block; margin-top:14px; padding:10px 14px; border-radius:999px;
-      border:1px solid #2b2b2b; background:#0f0f0f; color:#fff; font-weight:800; letter-spacing:.2px }
-    .notice .dot{ color:var(--gold) }
+    .notice{ display:inline-block; margin-top:6px; padding:10px 16px; border-radius:999px;
+      border:1px solid #2b2b2b; background:#0f0f0fd9; color:var(--gold); font-weight:800; letter-spacing:.2px }
+    .cta{ display:flex; flex-wrap:wrap; justify-content:center; gap:10px; margin-top:22px }
+    .btn{ display:inline-flex; align-items:center; gap:8px; padding:13px 20px; border-radius:999px; font-weight:800;
+      border:1px solid #3a3a3a; background:#0f0f0fd9; color:#fff }
+    .btn:hover{ border-color:var(--gold) }
+    .btn.gold{ background:linear-gradient(135deg, var(--gold), var(--gold-2)); color:#0b0b0b; border-color:transparent }
+    .btn svg{ width:18px; height:18px; flex:none }
 
     /* Sections */
     main section{ padding:56px 0 }
-    .title{ text-align:center; margin:0 0 20px; color:var(--gold); letter-spacing:.35px }
+    .title{ text-align:center; margin:0 0 20px; font-size:1.6rem; color:var(--gold); letter-spacing:.35px }
 
-    /* Cards / grid */
-    .grid{ display:grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap:14px }
     .panel{ background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); box-shadow: 0 1px 0 #ffffff12 inset, 0 12px 36px #0007 }
 
     /* Prices */
-    .prices{ padding:18px }
+    .prices{ padding:18px; max-width:760px; margin-inline:auto }
+    .prices ul{ list-style:none; margin:0; padding:0 }
     .price-row{ display:flex; justify-content:space-between; gap:10px; padding:12px 8px; border-bottom:1px dashed #242424 }
-    .price-row:last-child{ border-bottom:0 }
     .price-name{ font-weight:800 }
-    .price-note{ color:var(--muted); font-size:.92rem }
-    .price-tag{ font-weight:900; color:var(--gold) }
+    .price-note{ display:flex; justify-content:space-between; gap:10px; padding:12px 8px 4px; color:var(--muted); font-size:.92rem }
+    .price-tag{ font-weight:900; color:var(--gold); white-space:nowrap }
 
     /* Galleries */
-    .gallery{ display:grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap:12px }
+    .gallery{ display:grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap:12px }
     .thumb{ position:relative; aspect-ratio:3/2; overflow:hidden; border-radius:var(--radius); border:1px solid var(--line); background:#101010 }
+    .thumb.tall{ aspect-ratio:3/4 }
     .thumb img{ width:100%; height:100%; object-fit:cover; transform: scale(1.02); transition: transform .35s ease }
     .thumb:hover img{ transform: scale(1.06) }
-    .cap{ position:absolute; left:10px; bottom:8px; padding:6px 10px; border-radius:10px; background: linear-gradient(transparent, rgba(0,0,0,.65)); color:#eee; font-weight:700 }
+    .cap{ position:absolute; inset-inline:0; bottom:0; padding:28px 12px 10px; background: linear-gradient(transparent, rgba(0,0,0,.8)); color:#eee; font-weight:700; font-size:.92rem }
+    @media (max-width:520px){
+      .gallery{ grid-template-columns: repeat(2, 1fr); gap:8px }
+      .thumb{ border-radius:12px }
+      .cap{ font-size:.78rem; padding:22px 8px 6px }
+    }
 
     /* Contact */
     .contact{ text-align:center }
     .contact a{ text-decoration: underline; text-underline-offset:3px }
-    .info{ padding:20px; }
-    .hours{ margin-top:10px; display:grid; grid-template-columns: 1fr auto; gap:6px; max-width:420px; margin-inline:auto; color:#ddd }
-    .hours div:nth-child(odd){ color:#cfcfcf }
+    .contact .btn{ text-decoration:none }
+    .info{ padding:22px; display:grid; gap:6px }
+    .hours{ margin-top:10px; display:grid; grid-template-columns: 1fr auto; gap:6px 18px; max-width:420px; margin-inline:auto; color:#ddd; text-align:start }
+    .hours .today{ color:var(--gold); font-weight:800 }
+    .open-now{ margin-top:6px; font-weight:800 }
+    .open-now.is-open{ color:#7bd88f } .open-now.is-closed{ color:#ff8a80 }
+    .socials{ display:flex; justify-content:center; gap:10px; margin-top:10px }
     iframe{ margin-top:14px; width:100%; height:320px; border:0; border-radius:var(--radius) }
 
-    /* Footer & sticky */
+    /* Footer */
     footer{ padding:18px 0; text-align:center; color:#bdbdbd; border-top:1px solid var(--line); background:#0a0a0a; margin-top:38px }
-    .sticky{ position:fixed; inset-inline:0; bottom:0; display:none; gap:10px; padding:10px 14px;
-             background: rgba(5,5,5,.9); border-top:1px solid var(--line); backdrop-filter: blur(8px); z-index:60 }
-    @media (max-width:768px){ body{ padding-bottom:0 } .nav{ display:none } }
+
+    /* Sticky mobile action bar */
+    .sticky{ position:fixed; inset-inline:0; bottom:0; display:none; gap:10px; padding:10px 14px calc(10px + env(safe-area-inset-bottom));
+             background: rgba(5,5,5,.94); border-top:1px solid var(--line); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); z-index:60 }
+    .sticky .btn{ flex:1; justify-content:center; padding:12px 10px }
+    @media (max-width:768px){
+      .sticky{ display:flex }
+      body{ padding-bottom:calc(74px + env(safe-area-inset-bottom)) }
+    }
 
     /* Lightbox */
-    dialog.lightbox{ padding:0; border:0; background:transparent }
-    dialog.lightbox::backdrop{ background: rgba(0,0,0,.9) }
-    .lb-frame{ max-width:min(1200px, 95vw); margin:6vh auto; position:relative }
-    .lb-img{ width:100%; height:auto; max-height:82vh; border-radius:16px; display:block }
+    dialog.lightbox{ padding:0; border:0; background:transparent; max-width:100vw; max-height:100vh }
+    dialog.lightbox::backdrop{ background: rgba(0,0,0,.92) }
+    .lb-frame{ width:min(900px, 94vw); margin:4vh auto; position:relative }
+    .lb-img{ width:100%; height:auto; max-height:84vh; object-fit:contain; border-radius:16px; display:block; background:#000 }
     .lb-cap{ text-align:center; color:#ddd; margin-top:10px }
-    .lb-close,.nav-btn{ position:absolute; border:1px solid #2a2a2a; background:rgba(0,0,0,.6); color:#fff; padding:10px 12px; border-radius:999px; cursor:pointer }
+    .lb-close,.nav-btn{ position:absolute; border:1px solid #2a2a2a; background:rgba(0,0,0,.65); color:#fff; padding:10px 14px; border-radius:999px; cursor:pointer; font-size:1rem }
     .lb-close{ top:10px; right:10px } .nav-btn{ top:50%; transform: translateY(-50%) }
-    .nav-btn.prev{ left:-4px } .nav-btn.next{ right:-4px }
-    @media (max-width:520px){ .nav-btn{ padding:8px 10px } }
+    .nav-btn.prev{ left:8px } .nav-btn.next{ right:8px }
+
+    @media (prefers-reduced-motion: reduce){
+      html{ scroll-behavior:auto }
+      .thumb img{ transition:none }
+    }
   </style>
 </head>
 <body>
   <!-- Header -->
   <header>
     <div class="container bar">
-      <div class="brand">
-        <div class="logo" aria-hidden="true"></div>
-        <h2 class="name">Golfers <span>Barber</span></h2>
-      </div>
-      <nav class="nav" aria-label="Main">
+      <a class="brand" href="#top" aria-label="Golfers Barber — home">
+        <img class="logo" src="favicon.svg" alt="" width="44" height="44">
+        <span class="name">Golfers <span>Barber</span></span>
+      </a>
+      <button class="menu-btn" id="menu-btn" aria-label="Open menu" aria-expanded="false" aria-controls="main-nav">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+      <nav class="nav" id="main-nav" aria-label="Main">
         <a class="pill" href="#prices">Prices</a>
         <a class="pill" href="#haircuts">Haircuts</a>
+        <a class="pill" href="#gallery">Shop</a>
         <a class="pill" href="#contact">Contact</a>
+        <a class="pill call" href="tel:+447928968614">Call us</a>
       </nav>
     </div>
   </header>
 
   <!-- Hero -->
-  <section class="hero" aria-label="Welcome">
+  <section class="hero" id="top" aria-label="Welcome">
     <div class="hero__bg" aria-hidden="true">
-      <!-- إذا عندك صورة واجهة المحل سمّها shop-front.jpg أو عدّل الاسم هون -->
-      <img src="shop-front.jpg" alt="Front of Golfers Barber, North Berwick" loading="eager" fetchpriority="high" decoding="async">
+      <img src="shop-front.jpg" alt="" width="1078" height="994" fetchpriority="high" decoding="async">
     </div>
     <div class="container hero__wrap">
       <h1>Premium <span class="hl">Barbering</span> in North Berwick</h1>
-      <p>Skin fades, classic cuts, hot towel shaves & beard work with a modern touch.</p>
-      <div class="notice">• <span class="dot">We welcome everyone — no appointment needed. Walk-ins only.</span> •</div>
+      <p>Skin fades, classic cuts, hot towel shaves &amp; beard work with a modern touch.</p>
+      <div class="notice">Walk-ins only — no appointment needed. Everyone welcome.</div>
+      <div class="cta">
+        <a class="btn gold" href="tel:+447928968614">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z"/></svg>
+          Call now
+        </a>
+        <a class="btn" href="https://www.google.com/maps/dir/?api=1&amp;destination=19+High+St,+North+Berwick+EH39+4HH" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>
+          Get directions
+        </a>
+      </div>
     </div>
   </section>
 
-  <main class="container" role="main">
+  <main class="container">
     <!-- Prices -->
     <section id="prices" aria-labelledby="prices-title">
-      <h3 id="prices-title" class="title">Price List</h3>
-      <div class="panel prices" role="table" aria-label="Price list">
-        <div class="price-row" role="row"><div class="price-name" role="cell">Haircut</div><div class="price-tag" role="cell">£12</div></div>
-        <div class="price-row"><div class="price-name">Skin Fade</div><div class="price-tag">£15</div></div>
-        <div class="price-row"><div class="price-name">Scissor Cut</div><div class="price-tag">£15</div></div>
-        <div class="price-row"><div class="price-name">Clipper Cut (one length)</div><div class="price-tag">£10</div></div>
-        <div class="price-row"><div class="price-name">Beard Trim</div><div class="price-tag">£9</div></div>
-        <div class="price-row"><div class="price-name">Beard Shape & Line-up</div><div class="price-tag">£12</div></div>
-        <div class="price-row"><div class="price-name">Hot Towel Shave</div><div class="price-tag">£15</div></div>
-        <div class="price-row"><div class="price-name">Head Shave</div><div class="price-tag">£15</div></div>
-        <div class="price-row"><div class="price-name">Haircut & Shave</div><div class="price-tag">£30</div></div>
-        <div class="price-row"><div class="price-name">Kids (Under 12)</div><div class="price-tag">£10</div></div>
-        <div class="price-row"><div class="price-name">Seniors</div><div class="price-tag">£10</div></div>
-        <div class="price-row"><div class="price-name">Wash & Style</div><div class="price-tag">£6</div></div>
-        <div class="price-row"><div class="price-name">Restyle (long to short)</div><div class="price-tag">£18</div></div>
-        <!-- عدّل الأسعار بحرية من هون -->
-        <div class="price-row"><div class="price-note">All prices in GBP — cash preferred.</div><div class="price-note">Walk-ins only</div></div>
+      <h2 id="prices-title" class="title">Price List</h2>
+      <div class="panel prices">
+        <!-- Edit prices here -->
+        <ul>
+          <li class="price-row"><span class="price-name">Haircut</span><span class="price-tag">£12</span></li>
+          <li class="price-row"><span class="price-name">Skin Fade</span><span class="price-tag">£15</span></li>
+          <li class="price-row"><span class="price-name">Scissor Cut</span><span class="price-tag">£15</span></li>
+          <li class="price-row"><span class="price-name">Clipper Cut (one length)</span><span class="price-tag">£10</span></li>
+          <li class="price-row"><span class="price-name">Beard Trim</span><span class="price-tag">£9</span></li>
+          <li class="price-row"><span class="price-name">Beard Shape &amp; Line-up</span><span class="price-tag">£12</span></li>
+          <li class="price-row"><span class="price-name">Hot Towel Shave</span><span class="price-tag">£15</span></li>
+          <li class="price-row"><span class="price-name">Head Shave</span><span class="price-tag">£15</span></li>
+          <li class="price-row"><span class="price-name">Haircut &amp; Shave</span><span class="price-tag">£30</span></li>
+          <li class="price-row"><span class="price-name">Kids (Under 12)</span><span class="price-tag">£10</span></li>
+          <li class="price-row"><span class="price-name">Seniors</span><span class="price-tag">£10</span></li>
+          <li class="price-row"><span class="price-name">Wash &amp; Style</span><span class="price-tag">£6</span></li>
+          <li class="price-row"><span class="price-name">Restyle (long to short)</span><span class="price-tag">£18</span></li>
+        </ul>
+        <div class="price-note"><span>All prices in GBP — cash preferred.</span><span>Walk-ins only</span></div>
       </div>
     </section>
 
-    <!-- Haircuts (your work) -->
+    <!-- Haircuts (our work) -->
     <section id="haircuts" aria-labelledby="haircuts-title">
-      <h3 id="haircuts-title" class="title">Haircuts — Our Work</h3>
-
-      <!-- ✨ حمّل صور شغلك بأسماء haircut-01.jpg إلى haircut-20.jpg في نفس المجلد -->
+      <h2 id="haircuts-title" class="title">Haircuts — Our Work</h2>
+      <!-- Full photos: haircut-XX.jpg — small previews: thumbs/haircut-XX.webp -->
       <div class="gallery" data-gallery>
-        <a class="thumb" href="haircut-01.jpg" data-caption="Style 01"><img src="haircut-01.jpg" alt="Haircut 01"></a>
-        <a class="thumb" href="haircut-02.jpg" data-caption="Style 02"><img src="haircut-02.jpg" alt="Haircut 02"></a>
-        <a class="thumb" href="haircut-03.jpg" data-caption="Style 03"><img src="haircut-03.jpg" alt="Haircut 03"></a>
-        <a class="thumb" href="haircut-04.jpg" data-caption="Style 04"><img src="haircut-04.jpg" alt="Haircut 04"></a>
-        <a class="thumb" href="haircut-05.jpg" data-caption="Style 05"><img src="haircut-05.jpg" alt="Haircut 05"></a>
-        <a class="thumb" href="haircut-06.jpg" data-caption="Style 06"><img src="haircut-06.jpg" alt="Haircut 06"></a>
-        <a class="thumb" href="haircut-07.jpg" data-caption="Style 07"><img src="haircut-07.jpg" alt="Haircut 07"></a>
-        <a class="thumb" href="haircut-08.jpg" data-caption="Style 08"><img src="haircut-08.jpg" alt="Haircut 08"></a>
-        <a class="thumb" href="haircut-09.jpg" data-caption="Style 09"><img src="haircut-09.jpg" alt="Haircut 09"></a>
-        <a class="thumb" href="haircut-10.jpg" data-caption="Style 10"><img src="haircut-10.jpg" alt="Haircut 10"></a>
-        <a class="thumb" href="haircut-11.jpg" data-caption="Style 11"><img src="haircut-11.jpg" alt="Haircut 11"></a>
-        <a class="thumb" href="haircut-12.jpg" data-caption="Style 12"><img src="haircut-12.jpg" alt="Haircut 12"></a>
-        <a class="thumb" href="haircut-13.jpg" data-caption="Style 13"><img src="haircut-13.jpg" alt="Haircut 13"></a>
-        <a class="thumb" href="haircut-14.jpg" data-caption="Style 14"><img src="haircut-14.jpg" alt="Haircut 14"></a>
-        <a class="thumb" href="haircut-15.jpg" data-caption="Style 15"><img src="haircut-15.jpg" alt="Haircut 15"></a>
-        <a class="thumb" href="haircut-16.jpg" data-caption="Style 16"><img src="haircut-16.jpg" alt="Haircut 16"></a>
-        <a class="thumb" href="haircut-17.jpg" data-caption="Style 17"><img src="haircut-17.jpg" alt="Haircut 17"></a>
-        <a class="thumb" href="haircut-18.jpg" data-caption="Style 18"><img src="haircut-18.jpg" alt="Haircut 18"></a>
-        <a class="thumb" href="haircut-19.jpg" data-caption="Style 19"><img src="haircut-19.jpg" alt="Haircut 19"></a>
-        <a class="thumb" href="haircut-20.jpg" data-caption="Style 20"><img src="haircut-20.jpg" alt="Haircut 20"></a>
+        <a class="thumb tall" href="haircut-0.jpg" data-caption="Classic side part"><img src="thumbs/haircut-0.webp" alt="Classic side part — Golfers Barber" width="518" height="600" loading="lazy" decoding="async"><span class="cap">Classic side part</span></a>
+        <a class="thumb tall" href="haircut-01.jpg" data-caption="Mid fade, textured top"><img src="thumbs/haircut-01.webp" alt="Mid fade, textured top — Golfers Barber" width="450" height="600" loading="lazy" decoding="async"><span class="cap">Mid fade, textured top</span></a>
+        <a class="thumb tall" href="haircut-02.jpg" data-caption="Low taper, swept back"><img src="thumbs/haircut-02.webp" alt="Low taper, swept back — Golfers Barber" width="450" height="600" loading="lazy" decoding="async"><span class="cap">Low taper, swept back</span></a>
+        <a class="thumb tall" href="haircut-03.jpg" data-caption="Bleached blonde, swept style"><img src="thumbs/haircut-03.webp" alt="Bleached blonde, swept style — Golfers Barber" width="450" height="600" loading="lazy" decoding="async"><span class="cap">Bleached blonde, swept style</span></a>
+        <a class="thumb tall" href="haircut-04.jpg" data-caption="Classic taper, natural length"><img src="thumbs/haircut-04.webp" alt="Classic taper, natural length — Golfers Barber" width="450" height="600" loading="lazy" decoding="async"><span class="cap">Classic taper, natural length</span></a>
+        <a class="thumb tall" href="haircut-05.jpg" data-caption="Skin fade, textured quiff & beard"><img src="thumbs/haircut-05.webp" alt="Skin fade, textured quiff & beard — Golfers Barber" width="450" height="600" loading="lazy" decoding="async"><span class="cap">Skin fade, textured quiff & beard</span></a>
+        <a class="thumb tall" href="haircut-06.jpg" data-caption="Drop fade, textured crop"><img src="thumbs/haircut-06.webp" alt="Drop fade, textured crop — Golfers Barber" width="450" height="600" loading="lazy" decoding="async"><span class="cap">Drop fade, textured crop</span></a>
+        <a class="thumb tall" href="haircut-07.jpg" data-caption="Taper with flow-back"><img src="thumbs/haircut-07.webp" alt="Taper with flow-back — Golfers Barber" width="450" height="600" loading="lazy" decoding="async"><span class="cap">Taper with flow-back</span></a>
+        <a class="thumb tall" href="haircut-08.jpg" data-caption="Taper, swept back & beard trim"><img src="thumbs/haircut-08.webp" alt="Taper, swept back & beard trim — Golfers Barber" width="450" height="600" loading="lazy" decoding="async"><span class="cap">Taper, swept back & beard trim</span></a>
+        <a class="thumb tall" href="haircut-09.jpg" data-caption="Low taper, swept back"><img src="thumbs/haircut-09.webp" alt="Low taper, swept back — Golfers Barber" width="450" height="600" loading="lazy" decoding="async"><span class="cap">Low taper, swept back</span></a>
+        <a class="thumb tall" href="haircut-10.jpg" data-caption="Textured crop, tapered neckline"><img src="thumbs/haircut-10.webp" alt="Textured crop, tapered neckline — Golfers Barber" width="450" height="600" loading="lazy" decoding="async"><span class="cap">Textured crop, tapered neckline</span></a>
+        <a class="thumb tall" href="haircut-11.jpg" data-caption="Fringe crop, taper fade"><img src="thumbs/haircut-11.webp" alt="Fringe crop, taper fade — Golfers Barber" width="450" height="600" loading="lazy" decoding="async"><span class="cap">Fringe crop, taper fade</span></a>
+        <a class="thumb tall" href="haircut-12.jpg" data-caption="Textured crop, mid fade"><img src="thumbs/haircut-12.webp" alt="Textured crop, mid fade — Golfers Barber" width="450" height="600" loading="lazy" decoding="async"><span class="cap">Textured crop, mid fade</span></a>
+        <a class="thumb tall" href="haircut-13.jpg" data-caption="Mid skin fade & beard"><img src="thumbs/haircut-13.webp" alt="Mid skin fade & beard — Golfers Barber" width="450" height="600" loading="lazy" decoding="async"><span class="cap">Mid skin fade & beard</span></a>
+        <a class="thumb tall" href="haircut-14.jpg" data-caption="Textured fringe, taper fade"><img src="thumbs/haircut-14.webp" alt="Textured fringe, taper fade — Golfers Barber" width="523" height="600" loading="lazy" decoding="async"><span class="cap">Textured fringe, taper fade</span></a>
+        <a class="thumb tall" href="haircut-15.jpg" data-caption="Side part, taper fade"><img src="thumbs/haircut-15.webp" alt="Side part, taper fade — Golfers Barber" width="337" height="600" loading="lazy" decoding="async"><span class="cap">Side part, taper fade</span></a>
+        <a class="thumb tall" href="haircut-16.jpg" data-caption="Textured fringe, low fade"><img src="thumbs/haircut-16.webp" alt="Textured fringe, low fade — Golfers Barber" width="450" height="600" loading="lazy" decoding="async"><span class="cap">Textured fringe, low fade</span></a>
+        <a class="thumb tall" href="haircut-17.jpg" data-caption="Burst fade, textured top"><img src="thumbs/haircut-17.webp" alt="Burst fade, textured top — Golfers Barber" width="450" height="600" loading="lazy" decoding="async"><span class="cap">Burst fade, textured top</span></a>
+        <a class="thumb tall" href="haircut-18.jpg" data-caption="Textured crop, low taper"><img src="thumbs/haircut-18.webp" alt="Textured crop, low taper — Golfers Barber" width="450" height="600" loading="lazy" decoding="async"><span class="cap">Textured crop, low taper</span></a>
+        <a class="thumb tall" href="haircut-19.jpg" data-caption="Burst fade mohawk"><img src="thumbs/haircut-19.webp" alt="Burst fade mohawk — Golfers Barber" width="450" height="600" loading="lazy" decoding="async"><span class="cap">Burst fade mohawk</span></a>
+        <a class="thumb tall" href="haircut-20.jpg" data-caption="Modern mullet, burst fade"><img src="thumbs/haircut-20.webp" alt="Modern mullet, burst fade — Golfers Barber" width="450" height="600" loading="lazy" decoding="async"><span class="cap">Modern mullet, burst fade</span></a>
       </div>
     </section>
 
-    <!-- Optional: general shop photos (غيّر أو احذف) -->
+    <!-- Shop photos -->
     <section id="gallery" aria-labelledby="gallery-title">
-      <h3 id="gallery-title" class="title">Shop Photos</h3>
+      <h2 id="gallery-title" class="title">Inside the Shop</h2>
       <div class="gallery" data-gallery>
-        <a class="thumb" href="shop-front.jpg" data-caption="Shop front"><img src="shop-front.jpg" alt="Shop front"></a>
-        <a class="thumb" href="inside-1.jpg" data-caption="Inside the shop"><img src="inside-1.jpg" alt="Inside the shop"></a>
-        <a class="thumb" href="inside-2.jpg" data-caption="Busy day"><img src="inside-2.jpg" alt="Busy day"></a>
+        <a class="thumb" href="shop-front.jpg" data-caption="Shop front, 19 High St"><img src="thumbs/shop-front.webp" alt="Golfers Barber shop front on High Street, North Berwick" width="600" height="553" loading="lazy" decoding="async"><span class="cap">Shop front</span></a>
+        <a class="thumb" href="inside-1.jpg" data-caption="Inside the shop"><img src="thumbs/inside-1.webp" alt="Barber chairs inside Golfers Barber" width="600" height="428" loading="lazy" decoding="async"><span class="cap">Inside the shop</span></a>
+        <a class="thumb" href="inside-2.jpg" data-caption="Busy day"><img src="thumbs/inside-2.webp" alt="Barbers at work on a busy day" width="600" height="428" loading="lazy" decoding="async"><span class="cap">Busy day</span></a>
       </div>
     </section>
 
     <!-- Contact -->
     <section id="contact" aria-labelledby="contact-title" class="contact">
-      <h3 id="contact-title" class="title">Contact & Location</h3>
+      <h2 id="contact-title" class="title">Contact &amp; Location</h2>
       <div class="panel info">
         <div>📍 19 High St, North Berwick EH39 4HH, United Kingdom</div>
         <div>📞 <a href="tel:+447928968614">+44 7928 968614</a></div>
+        <div class="open-now" id="open-now" aria-live="polite"></div>
         <div class="hours" aria-label="Opening hours">
-          <div>Mon–Fri</div><div>9:00 – 18:00</div>
-          <div>Saturday</div><div>9:00 – 17:00</div>
-          <div>Sunday</div><div>Closed</div>
+          <div data-days="1,2,3,4,5">Mon–Fri</div><div data-days="1,2,3,4,5">9:00 – 18:00</div>
+          <div data-days="6">Saturday</div><div data-days="6">9:00 – 17:00</div>
+          <div data-days="0">Sunday</div><div data-days="0">Closed</div>
         </div>
+        <div class="cta">
+          <a class="btn gold" href="tel:+447928968614">Call now</a>
+          <a class="btn" href="https://www.google.com/maps/dir/?api=1&amp;destination=19+High+St,+North+Berwick+EH39+4HH" target="_blank" rel="noopener">Get directions</a>
+        </div>
+        <!-- Social links: remove the comment marks and put your real links
+        <div class="socials">
+          <a class="btn" href="https://www.instagram.com/YOUR-ACCOUNT" target="_blank" rel="noopener">Instagram</a>
+          <a class="btn" href="https://www.facebook.com/YOUR-PAGE" target="_blank" rel="noopener">Facebook</a>
+          <a class="btn" href="https://wa.me/447928968614" target="_blank" rel="noopener">WhatsApp</a>
+        </div>
+        -->
       </div>
-      <iframe src="https://www.google.com/maps?q=19+High+St,+North+Berwick+EH39+4HH,+UK&output=embed" title="Map: Golfers Barber" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+      <iframe src="https://www.google.com/maps?q=19+High+St,+North+Berwick+EH39+4HH,+UK&amp;output=embed" title="Map: Golfers Barber, 19 High St, North Berwick" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
     </section>
   </main>
 
-  <footer>&copy; <span id="year"></span> Golfers Barber. All Rights Reserved.</footer>
+  <footer>&copy; <span id="year"></span> Golfers Barber · 19 High St, North Berwick. All rights reserved.</footer>
+
+  <!-- Sticky action bar (mobile) -->
+  <div class="sticky" aria-label="Quick actions">
+    <a class="btn gold" href="tel:+447928968614">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z"/></svg>
+      Call
+    </a>
+    <a class="btn" href="https://www.google.com/maps/dir/?api=1&amp;destination=19+High+St,+North+Berwick+EH39+4HH" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>
+      Directions
+    </a>
+  </div>
 
   <!-- Lightbox -->
   <dialog id="lightbox" class="lightbox" aria-label="Expanded photo">
     <div class="lb-frame">
-      <button class="lb-close" id="lb-close" aria-label="Close">✕</button>
-      <button class="nav-btn prev" id="lb-prev" aria-label="Previous">◀</button>
       <img id="lb-img" class="lb-img" alt="">
-      <button class="nav-btn next" id="lb-next" aria-label="Next">▶</button>
+      <button class="lb-close" id="lb-close" aria-label="Close">✕</button>
+      <button class="nav-btn prev" id="lb-prev" aria-label="Previous photo">◀</button>
+      <button class="nav-btn next" id="lb-next" aria-label="Next photo">▶</button>
       <p id="lb-cap" class="lb-cap"></p>
     </div>
   </dialog>
@@ -234,32 +349,66 @@
     // Footer year
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // Simple lightbox (auto-reads any [data-gallery] thumbs)
+    // Mobile menu
+    (function(){
+      const btn = document.getElementById('menu-btn');
+      const nav = document.getElementById('main-nav');
+      function setOpen(open){ nav.classList.toggle('open', open); btn.setAttribute('aria-expanded', open); btn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu'); }
+      btn.addEventListener('click', () => setOpen(!nav.classList.contains('open')));
+      nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setOpen(false)));
+      document.addEventListener('keydown', e => { if (e.key === 'Escape') setOpen(false); });
+      document.addEventListener('click', e => { if (!nav.contains(e.target) && !btn.contains(e.target)) setOpen(false); });
+    })();
+
+    // Open now / closed (UK time) + highlight today's hours
+    (function(){
+      const hours = {0:null, 1:[9,18], 2:[9,18], 3:[9,18], 4:[9,18], 5:[9,18], 6:[9,17]};
+      const parts = new Intl.DateTimeFormat('en-GB', {timeZone:'Europe/London', weekday:'short', hour:'numeric', minute:'numeric', hour12:false}).formatToParts(new Date());
+      const get = t => parts.find(p => p.type === t).value;
+      const day = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'].indexOf(get('weekday'));
+      const now = (+get('hour') % 24) + (+get('minute')) / 60;
+      const h = hours[day];
+      const el = document.getElementById('open-now');
+      if (h && now >= h[0] && now < h[1]) { el.textContent = 'Open now — closes at ' + h[1] + ':00'; el.className = 'open-now is-open'; }
+      else { el.textContent = 'Closed now'; el.className = 'open-now is-closed'; }
+      document.querySelectorAll('.hours [data-days]').forEach(d => { if (d.dataset.days.split(',').includes(String(day))) d.classList.add('today'); });
+    })();
+
+    // Lightbox (one gallery at a time)
     (function(){
       const dialog = document.getElementById('lightbox');
       const img = document.getElementById('lb-img');
       const cap = document.getElementById('lb-cap');
-      const prev = document.getElementById('lb-prev');
-      const next = document.getElementById('lb-next');
-      const closeBtn = document.getElementById('lb-close');
-      const thumbs = Array.from(document.querySelectorAll('[data-gallery] .thumb'));
+      let slides = [], i = 0, lastFocus = null;
 
-      const slides = thumbs.map(a => ({
-        src: a.getAttribute('href'),
-        cap: a.dataset.caption || a.querySelector('img')?.alt || ''
-      }));
+      function show(idx){
+        i = (idx + slides.length) % slides.length;
+        img.src = slides[i].src; img.alt = slides[i].cap; cap.textContent = slides[i].cap + '  (' + (i+1) + '/' + slides.length + ')';
+        [i+1, i-1].forEach(n => { const s = slides[(n + slides.length) % slides.length]; if (s) new Image().src = s.src; });
+      }
+      function open(list, idx){
+        slides = list; lastFocus = document.activeElement; show(idx);
+        if (dialog.showModal) dialog.showModal(); else window.open(slides[idx].src, '_blank');
+      }
+      function close(){ dialog.close(); }
+      dialog.addEventListener('close', () => { img.removeAttribute('src'); if (lastFocus) lastFocus.focus(); });
 
-      let i = 0, lastFocus = null;
-      function show(idx){ i = (idx + slides.length) % slides.length; img.src = slides[i].src; img.alt = slides[i].cap; cap.textContent = slides[i].cap; }
-      function open(idx){ lastFocus = document.activeElement; show(idx); if (dialog.showModal) dialog.showModal(); else window.open(slides[idx].src, '_blank'); }
-      function close(){ dialog.close(); img.src = ''; if (lastFocus) lastFocus.focus(); }
+      document.querySelectorAll('[data-gallery]').forEach(gal => {
+        const thumbs = Array.from(gal.querySelectorAll('.thumb'));
+        const list = thumbs.map(a => ({ src: a.getAttribute('href'), cap: a.dataset.caption || a.querySelector('img')?.alt || '' }));
+        thumbs.forEach((a, idx) => a.addEventListener('click', e => { e.preventDefault(); open(list, idx); }));
+      });
 
-      thumbs.forEach((a, idx) => a.addEventListener('click', e => { e.preventDefault(); open(idx); }));
-      prev.addEventListener('click', () => show(i-1));
-      next.addEventListener('click', () => show(i+1));
-      closeBtn.addEventListener('click', close);
+      document.getElementById('lb-prev').addEventListener('click', () => show(i-1));
+      document.getElementById('lb-next').addEventListener('click', () => show(i+1));
+      document.getElementById('lb-close').addEventListener('click', close);
       dialog.addEventListener('click', e => { if (e.target === dialog) close(); });
-      window.addEventListener('keydown', e => { if (!dialog.open) return; if (e.key === 'Escape') close(); if (e.key === 'ArrowLeft') show(i-1); if (e.key === 'ArrowRight') show(i+1); }, {passive:true});
+      window.addEventListener('keydown', e => { if (!dialog.open) return; if (e.key === 'ArrowLeft') show(i-1); if (e.key === 'ArrowRight') show(i+1); });
+
+      // Swipe on phones
+      let x0 = null;
+      img.addEventListener('touchstart', e => { x0 = e.touches[0].clientX; }, {passive:true});
+      img.addEventListener('touchend', e => { if (x0 === null) return; const dx = e.changedTouches[0].clientX - x0; if (Math.abs(dx) > 40) show(dx < 0 ? i+1 : i-1); x0 = null; }, {passive:true});
     })();
   </script>
 </body>
